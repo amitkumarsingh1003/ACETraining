@@ -1,0 +1,43 @@
+"GC task thread#3 (ParallelGC)" os_prio=0 tid=0x0000000002482800 nid=0x11f8 runnable 
+
+"VM Periodic Task Thread" os_prio=2 tid=0x000000001d74d800 nid=0x2ec waiting on condition 
+
+JNI global references: 367
+
+
+Found one Java-level deadlock:
+=============================
+"Thread-1":
+  waiting for ownable synchronizer 0x000000076dbea308, (a java.util.concurrent.locks.ReentrantLock$NonfairSync),
+  which is held by "Thread-0"
+"Thread-0":
+  waiting for ownable synchronizer 0x000000076dbea338, (a java.util.concurrent.locks.ReentrantLock$NonfairSync),
+  which is held by "Thread-1"
+
+Java stack information for the threads listed above:
+===================================================
+"Thread-1":
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x000000076dbea308> (a java.util.concurrent.locks.ReentrantLock$NonfairSync)
+	at java.util.concurrent.locks.LockSupport.park(Unknown Source)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer.parkAndCheckInterrupt(Unknown Source)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer.acquireQueued(Unknown Source)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire(Unknown Source)
+	at java.util.concurrent.locks.ReentrantLock$NonfairSync.lock(Unknown Source)
+	at java.util.concurrent.locks.ReentrantLock.lock(Unknown Source)
+	at thread.Deadlock$2.run(Deadlock.java:45)
+	at java.lang.Thread.run(Unknown Source)
+"Thread-0":
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x000000076dbea338> (a java.util.concurrent.locks.ReentrantLock$NonfairSync)
+	at java.util.concurrent.locks.LockSupport.park(Unknown Source)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer.parkAndCheckInterrupt(Unknown Source)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer.acquireQueued(Unknown Source)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire(Unknown Source)
+	at java.util.concurrent.locks.ReentrantLock$NonfairSync.lock(Unknown Source)
+	at java.util.concurrent.locks.ReentrantLock.lock(Unknown Source)
+	at thread.Deadlock$1.run(Deadlock.java:25)
+	at java.lang.Thread.run(Unknown Source)
+
+Found 1 deadlock.
+
