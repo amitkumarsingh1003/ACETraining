@@ -1,0 +1,41 @@
+Approach 1:-
+
+C:\Program Files\Java\jdk1.8.0_74\bin>jvisualvm
+
+C:\Program Files\Java\jdk1.8.0_74\bin>
+
+The launcher has determined that the parent process has a console and will reuse
+ it for its own console output.
+Closing the console will result in termination of the running program.
+Use '--console suppress' to suppress console output.
+Use '--console new' to create a separate console window.
+
+In Left window(Application Window), Double Click on the Application Class, It will get open in right window. Go to Thread tab and click on Thread Dump.
+
+Analyse the thread. In thread Dump it will clearly show the deadlock as below:-
+Found one Java-level deadlock:
+=============================
+"Thread-1":
+  waiting for ownable synchronizer 0x000000076dbea308, (a java.util.concurrent.locks.ReentrantLock$NonfairSync),
+  which is held by "Thread-0"
+"Thread-0":
+  waiting for ownable synchronizer 0x000000076dbea338, (a java.util.concurrent.locks.ReentrantLock$NonfairSync),
+  which is held by "Thread-1"
+
+Java stack information for the threads listed above:
+
+Approach 2:-
+1. C:\Program Files\Java\jdk1.8.0_74\bin>jconsole
+
+2. it will open one window. select you application/class and click on connect.
+3. Go to Thread tab.
+4. Click on "Detect Deadlock" button in bottom of the window.
+
+Approach 3:-
+1. C:\Program Files\Java\jdk1.8.0_74\bin>jps -l
+	It will list all java application with pid
+2. C:\Program Files\Java\jdk1.8.0_74\bin>jmap -dump:live,format=b,file=HeapDump.hpr
+of 3720
+Dumping heap to C:\Program Files\Java\jdk1.8.0_74\bin\HeapDump.hprof ...
+Heap dump file created
+3. Install memory Analyser plugin in eclipse and open the above heap dump.

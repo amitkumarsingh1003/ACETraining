@@ -1,0 +1,157 @@
+C:\Program Files\Java\jdk1.8.0_74\bin>jstack 3720
+2016-12-19 11:53:00
+Full thread dump Java HotSpot(TM) 64-Bit Server VM (25.74-b02 mixed mode):
+
+"DestroyJavaVM" #12 prio=5 os_prio=0 tid=0x000000000242d800 nid=0xad8 waiting on
+ condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Thread-1" #11 prio=5 os_prio=0 tid=0x000000001d75d800 nid=0x1cf0 waiting on con
+dition [0x000000001e41f000]
+   java.lang.Thread.State: WAITING (parking)
+        at sun.misc.Unsafe.park(Native Method)
+        - parking to wait for  <0x000000076dbea308> (a java.util.concurrent.lock
+s.ReentrantLock$NonfairSync)
+        at java.util.concurrent.locks.LockSupport.park(Unknown Source)
+        at java.util.concurrent.locks.AbstractQueuedSynchronizer.parkAndCheckInt
+errupt(Unknown Source)
+        at java.util.concurrent.locks.AbstractQueuedSynchronizer.acquireQueued(U
+nknown Source)
+        at java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire(Unknown
+ Source)
+        at java.util.concurrent.locks.ReentrantLock$NonfairSync.lock(Unknown Sou
+rce)
+        at java.util.concurrent.locks.ReentrantLock.lock(Unknown Source)
+        at thread.Deadlock$2.run(Deadlock.java:45)
+        at java.lang.Thread.run(Unknown Source)
+
+"Thread-0" #10 prio=5 os_prio=0 tid=0x000000001d75d000 nid=0xd50 waiting on cond
+ition [0x000000001e31e000]
+   java.lang.Thread.State: WAITING (parking)
+        at sun.misc.Unsafe.park(Native Method)
+        - parking to wait for  <0x000000076dbea338> (a java.util.concurrent.lock
+s.ReentrantLock$NonfairSync)
+        at java.util.concurrent.locks.LockSupport.park(Unknown Source)
+        at java.util.concurrent.locks.AbstractQueuedSynchronizer.parkAndCheckInt
+errupt(Unknown Source)
+        at java.util.concurrent.locks.AbstractQueuedSynchronizer.acquireQueued(U
+nknown Source)
+        at java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire(Unknown
+ Source)
+        at java.util.concurrent.locks.ReentrantLock$NonfairSync.lock(Unknown Sou
+rce)
+        at java.util.concurrent.locks.ReentrantLock.lock(Unknown Source)
+        at thread.Deadlock$1.run(Deadlock.java:25)
+        at java.lang.Thread.run(Unknown Source)
+
+"Service Thread" #9 daemon prio=9 os_prio=0 tid=0x000000001d71b800 nid=0x1bf8 ru
+nnable [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"C1 CompilerThread2" #8 daemon prio=9 os_prio=2 tid=0x000000001d6b8800 nid=0x614
+ waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"C2 CompilerThread1" #7 daemon prio=9 os_prio=2 tid=0x000000001bbfd000 nid=0x1c2
+4 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"C2 CompilerThread0" #6 daemon prio=9 os_prio=2 tid=0x000000001bbf5800 nid=0xd44
+ waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Attach Listener" #5 daemon prio=5 os_prio=2 tid=0x000000001bbf3000 nid=0x1f48 w
+aiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Signal Dispatcher" #4 daemon prio=9 os_prio=2 tid=0x000000001bbef800 nid=0x1f4c
+ runnable [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Finalizer" #3 daemon prio=8 os_prio=1 tid=0x000000001bbd8800 nid=0x1f38 in Obje
+ct.wait() [0x000000001cfef000]
+   java.lang.Thread.State: WAITING (on object monitor)
+        at java.lang.Object.wait(Native Method)
+        - waiting on <0x000000076db88ee0> (a java.lang.ref.ReferenceQueue$Lock)
+        at java.lang.ref.ReferenceQueue.remove(Unknown Source)
+        - locked <0x000000076db88ee0> (a java.lang.ref.ReferenceQueue$Lock)
+        at java.lang.ref.ReferenceQueue.remove(Unknown Source)
+        at java.lang.ref.Finalizer$FinalizerThread.run(Unknown Source)
+
+"Reference Handler" #2 daemon prio=10 os_prio=2 tid=0x000000001bb91800 nid=0x19d
+0 in Object.wait() [0x000000001ce4f000]
+   java.lang.Thread.State: WAITING (on object monitor)
+        at java.lang.Object.wait(Native Method)
+        - waiting on <0x000000076db86b50> (a java.lang.ref.Reference$Lock)
+        at java.lang.Object.wait(Unknown Source)
+        at java.lang.ref.Reference.tryHandlePending(Unknown Source)
+        - locked <0x000000076db86b50> (a java.lang.ref.Reference$Lock)
+        at java.lang.ref.Reference$ReferenceHandler.run(Unknown Source)
+
+"VM Thread" os_prio=2 tid=0x000000001bb8a000 nid=0x1b18 runnable
+
+"GC task thread#0 (ParallelGC)" os_prio=0 tid=0x000000000247c000 nid=0xcf4 runna
+ble
+
+"GC task thread#1 (ParallelGC)" os_prio=0 tid=0x000000000247d800 nid=0x1600 runn
+able
+
+"GC task thread#2 (ParallelGC)" os_prio=0 tid=0x000000000247f000 nid=0x1e78 runn
+able
+
+"GC task thread#3 (ParallelGC)" os_prio=0 tid=0x0000000002482800 nid=0x11f8 runn
+able
+
+"VM Periodic Task Thread" os_prio=2 tid=0x000000001d74d800 nid=0x2ec waiting on
+condition
+
+JNI global references: 5
+
+
+Found one Java-level deadlock:
+=============================
+"Thread-1":
+  waiting for ownable synchronizer 0x000000076dbea308, (a java.util.concurrent.l
+ocks.ReentrantLock$NonfairSync),
+  which is held by "Thread-0"
+"Thread-0":
+  waiting for ownable synchronizer 0x000000076dbea338, (a java.util.concurrent.l
+ocks.ReentrantLock$NonfairSync),
+  which is held by "Thread-1"
+
+Java stack information for the threads listed above:
+===================================================
+"Thread-1":
+        at sun.misc.Unsafe.park(Native Method)
+        - parking to wait for  <0x000000076dbea308> (a java.util.concurrent.lock
+s.ReentrantLock$NonfairSync)
+        at java.util.concurrent.locks.LockSupport.park(Unknown Source)
+        at java.util.concurrent.locks.AbstractQueuedSynchronizer.parkAndCheckInt
+errupt(Unknown Source)
+        at java.util.concurrent.locks.AbstractQueuedSynchronizer.acquireQueued(U
+nknown Source)
+        at java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire(Unknown
+ Source)
+        at java.util.concurrent.locks.ReentrantLock$NonfairSync.lock(Unknown Sou
+rce)
+        at java.util.concurrent.locks.ReentrantLock.lock(Unknown Source)
+        at thread.Deadlock$2.run(Deadlock.java:45)
+        at java.lang.Thread.run(Unknown Source)
+"Thread-0":
+        at sun.misc.Unsafe.park(Native Method)
+        - parking to wait for  <0x000000076dbea338> (a java.util.concurrent.lock
+s.ReentrantLock$NonfairSync)
+        at java.util.concurrent.locks.LockSupport.park(Unknown Source)
+        at java.util.concurrent.locks.AbstractQueuedSynchronizer.parkAndCheckInt
+errupt(Unknown Source)
+        at java.util.concurrent.locks.AbstractQueuedSynchronizer.acquireQueued(U
+nknown Source)
+        at java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire(Unknown
+ Source)
+        at java.util.concurrent.locks.ReentrantLock$NonfairSync.lock(Unknown Sou
+rce)
+        at java.util.concurrent.locks.ReentrantLock.lock(Unknown Source)
+        at thread.Deadlock$1.run(Deadlock.java:25)
+        at java.lang.Thread.run(Unknown Source)
+
+Found 1 deadlock.
